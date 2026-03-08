@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mood Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+<div class="container">
+
+  <div id="cat-sticker">🐱</div>
+
+  <h1>🌿 Mood Journal</h1>
+  <p class="quote" id="dailyQuote"></p>
+
+  <div class="nav">
+    <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
+    <button onclick="showPage('activities')" id="nav-activities">Activities</button>
+    <button onclick="showPage('weekly')" id="nav-weekly">Weekly</button>
+    <button onclick="showPage('monthly')" id="nav-monthly">Monthly</button>
+    <button onclick="showPage('calendar')" id="nav-calendar">Calendar</button>
+  </div>
+
+  <div class="page active" id="home">
+    <h2>How are you today?</h2>
+    <input type="date" id="moodDate">
+    <div class="moods">
+      <button onclick="selectMood(event,'happy')" class="happy">😄 Happy</button>
+      <button onclick="selectMood(event,'good')"  class="good">🙂 Good</button>
+      <button onclick="selectMood(event,'meh')"   class="meh">😐 Meh</button>
+      <button onclick="selectMood(event,'sad')"   class="sad">😢 Sad</button>
+      <button onclick="selectMood(event,'awful')" class="awful">😡 Awful</button>
+    </div>
+    <div id="deleteArea"></div>
+  </div>
+
+  <div class="page" id="activities">
+    <h2>Why did you feel this way?</h2>
+    <div class="activities">
+      <label><input type="checkbox" name="activity" value="Gym"> 🏋️ Gym</label>
+      <label><input type="checkbox" name="activity" value="Study"> 📚 Study</label>
+      <label><input type="checkbox" name="activity" value="Friends"> 👫 Friends</label>
+      <label><input type="checkbox" name="activity" value="Sleep"> 😴 Good Sleep</label>
+      <label><input type="checkbox" name="activity" value="Gaming"> 🎮 Gaming</label>
+      <label><input type="checkbox" name="activity" value="Family"> 🏠 Family</label>
+      <label><input type="checkbox" id="otherCheck"> ✏️ Other</label>
+      <input type="text" id="otherText" placeholder="Describe in max 20 words...">
+    </div>
+    <br>
+    <button class="save" onclick="saveMood()">💾 Save Mood</button>
+  </div>
+
+  <div class="page" id="weekly">
+    <h2>Weekly Mood Insights</h2>
+    <div id="weeklyText"></div>
+  </div>
+
+  <div class="page" id="monthly">
+    <h2>Monthly Mood Summary</h2>
+    <div class="chart-wrap"><canvas id="pieChart"></canvas></div>
+    <div id="monthlyQuote"></div>
+  </div>
+
+  <div class="page" id="calendar">
+    <h2>Mood Calendar 2026</h2>
+    <div class="cal-controls">
+      <select id="monthSelect" onchange="drawCalendar()">
+        <option value="0">January</option><option value="1">February</option>
+        <option value="2">March</option><option value="3">April</option>
+        <option value="4">May</option><option value="5">June</option>
+        <option value="6">July</option><option value="7">August</option>
+        <option value="8">September</option><option value="9">October</option>
+        <option value="10">November</option><option value="11">December</option>
+      </select>
+    </div>
+    <div class="cal-header">
+      <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+      <span>Thu</span><span>Fri</span><span>Sat</span>
+    </div>
+    <div id="calendarGrid"></div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#43e97b"></div> Happy</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#f9ca24"></div> Good</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4fc3f7"></div> Meh</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ff9a3c"></div> Sad</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ff4d6d"></div> Awful</div>
+    </div>
+  </div>
+
+</div>
+<script src="script2.js"></script>
+</body>
+</html>
